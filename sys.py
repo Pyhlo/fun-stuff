@@ -3,7 +3,7 @@ import os
 import platform
 import time
 import wmi
-
+import socket
 
 computer = wmi.WMI()
 def getInfo():
@@ -40,11 +40,16 @@ def getInfo():
     minRefresh = computer.Win32_VideoController()[0].MinRefreshRate
 
     os.system('clear')
+    print('Getting network information...')
+    ## NETWORK
+    networkName = socket.gethostbyname(socket.gethostname())
+
+    os.system('clear')
     print('''
  _  _  _ _____ __   _ ______   _____  _  _  _ _______      _____ __   _ _______  _____
  |  |  |   |   | \  | |     \ |     | |  |  | |______        |   | \  | |______ |     |
  |__|__| __|__ |  \_| |_____/ |_____| |__|__| ______|      __|__ |  \_| |       |_____|
-                                    v1.0 By Pyhlo''')
+                                    v1.1 By Pyhlo''')
     print('[**] OS System information [**]')
     print('System: ' + str(mySys))
     print('Node: '+ str(sysNode))
@@ -65,6 +70,9 @@ def getInfo():
     print('Memory type: ' + str(memoryType))
     print('Max refresh rate: ' + str(maxRefresh))
     print('Min refresh rate: ' + str(minRefresh))
+    print(' ')
+    print('[**] Network Information [**]')
+    print('IP-Address: ' + str(networkName))
     print(' ')
     time.sleep(10000)
 getInfo()
